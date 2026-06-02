@@ -1,7 +1,8 @@
 #include "Homework.h"
+#include "Ship.h"
 #include <iostream>
 
-int main()
+void Homework_Run()
 {
-    Homework_Run();
+
 }
