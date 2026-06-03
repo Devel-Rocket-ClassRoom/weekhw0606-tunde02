@@ -1,5 +1,7 @@
 #pragma once
-#include "Ship.h"
+#include "Position.h"
+
+#include <string>
 
 /*
 Battle Ship 게임 만들기
@@ -33,14 +35,11 @@ Battle Ship 게임 만들기
 /// </summary>
 void Homework_Run();
 
-const int RowSize = 10;
-const int ColumnSize = 10;
-const int AttackChance = 30;
-const int InvalidPosition = -1;
+const int RowSize               = 10;
+const int ColumnSize            = 10;
+const int InitialAttackChance   = 30;
 
-void PrintDebugMap(const int* InMap, int InRowSize, int InColumnSize);
-void PrintMap(const int* InMap, const bool* InIsRevealeds, int InRowSize, int InColumnSize);
-void PrintOriginalMap(const int* InMap, int InRowSize, int InColumnSize);
-Ship::ShipType Int2ShipType(int InInt);
-std::string Int2ShipString(int InInt);
-std::string ShipType2ShipString(Ship::ShipType InShipType);
+std::string InputCoordinates();
+bool IsValidCoordinatesString(std::string CoordinatesString);
+Position ToPosition(std::string ValidInput);
+void PrintAttackHistory(const Position* AttackHistory, int AttackCount);
