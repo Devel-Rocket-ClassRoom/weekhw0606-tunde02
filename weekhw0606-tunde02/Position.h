@@ -15,6 +15,7 @@ public:
     Position operator+(const Position& other) const;
     Position operator-(const Position& other) const;
     Position operator*(int other) const;
+    bool operator==(const Position& other) const;
 
     std::string ToString() const;
 

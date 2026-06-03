@@ -30,6 +30,11 @@ Position Position::operator*(int other) const
     return Result;
 }
 
+bool Position::operator==(const Position& other) const
+{
+    return this->X == other.X && this->Y == other.Y;
+}
+
 std::string Position::ToString() const
 {
     return "(" + std::to_string(X) + ", " + std::to_string(Y) + ")";

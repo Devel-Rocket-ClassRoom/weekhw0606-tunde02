@@ -1,22 +1,29 @@
 #pragma once
 #include "Position.h"
-
+#include "Direction.h"
+#include "ShipType.h"
 
 class Ship
 {
-public:
-    enum class Direction { Up = 0, Down = 1, Left = 2, Right = 3, DirectionLength = 4 };
-    enum class ShipType { None = 0, Babysitter = 2, Cruiser = 3, Battleship = 4, AircraftCarrier = 5 };
-
 private:
-    const Position DPos[4]{ Position{ -1, 0 }, Position{ 1, 0 }, Position{ 0, -1 }, Position{ 0, 1 } };
-    Position StartPosition{};
     Position* Positions = nullptr;
-    Direction ShipDirection = Direction::DirectionLength;
+    bool* IsDestroyedPositions = nullptr;
     ShipType Type = ShipType::None;
+    int ShipSize = 0;
+    int Hp = 0;
 
 public:
     Ship() = default;
-    Ship(const Position& InPosition, Direction InShipDirection, ShipType InShipType);
     ~Ship();
+
+    Ship(Position* InPositions, ShipType InShipType);
+    Ship(Ship&& other) noexcept;
+    Ship(const Ship& other) = delete;
+    Ship& operator=(const Ship& other) = delete;
+    Ship& operator=(Ship&& other) noexcept;
+
+    bool IsAlive() const;
+    bool HasPosition(Position InPosition) const;
+    void DestroyAt(Position InPosition);
+    std::string GetShipName() const;
 };
