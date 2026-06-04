@@ -11,7 +11,7 @@ Ship::~Ship()
 Ship::Ship(Position* InPositions, ShipType InShipType)
     : Positions(InPositions), Type(InShipType)
 {
-    ShipSize = static_cast<int>(Type);
+    ShipSize = ShipType2Int(Type);
     IsDestroyedPositions = new bool[ShipSize] { false };
     Hp = ShipSize;
 }
@@ -27,6 +27,8 @@ Ship& Ship::operator=(Ship&& other) noexcept
 {
     if (this != &other)
     {
+        // 깊은 복사
+
         delete[] Positions;
         delete[] IsDestroyedPositions;
 

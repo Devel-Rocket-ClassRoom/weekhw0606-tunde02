@@ -1,6 +1,13 @@
 #pragma once
 #include "Position.h"
 
+/// <summary>
+/// 방향을 나타내는 열거체
+/// <para>Up : 0</para>
+/// <para>Down : 1</para>
+/// <para>Left : 2</para>
+/// <para>Right : 3</para>
+/// </summary>
 enum class Direction
 {
     Up              = 0,

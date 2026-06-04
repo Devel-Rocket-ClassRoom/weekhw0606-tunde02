@@ -56,11 +56,15 @@ bool BattleShipMap::AttackPlaceAt(Position InPosition)
     {
         if (Ships[i].HasPosition(InPosition))
         {
+            // 주어진 좌표를 가진 함선이 있다면 해당 함선의 해당 좌표를 공격
             Ships[i].DestroyAt(InPosition);
+
+            // 공격을 마친 후에 함선의 파괴 여부를 저장
             IsDestroyed = !Ships[i].IsAlive();
         }
     }
 
+    // 공격을 시도한 좌표는 맵 상에서 공개하도록 변경
     IsRevealeds[InPosition.GetY() * ColumnSize + InPosition.GetX()] = true;
 
     return IsDestroyed;
@@ -152,6 +156,7 @@ void BattleShipMap::PrintOriginalMap() const
 
             if (Int2ShipType(MapInt) != ShipType::None)
             {
+                // 맵의 좌표의 내용이 함선이라면 해당 함선 문자열을 출력
                 printf(" %s ", Int2ShipTypeString(MapInt).c_str());
             }
             else
@@ -170,7 +175,10 @@ bool BattleShipMap::CanPlaceShipAt(Position InPosition, ShipType InShipType, Dir
 
     for (int i = 0; i < ShipSize; i++)
     {
+        // 시작 좌표에서 주어진 방향으로 i만큼 나아간 좌표
         Position CheckPosition = InPosition + GetDirectionPosition(InDirection) * i;
+
+        // 함선을 배치할 좌표가 맵을 벗어나거나, 이미 다른 함선이 있는 좌표라면 함선을 배치할 수 없다
         if (IsOutOfMap(CheckPosition) || IsShipAt(CheckPosition))
         {
             CanPlace = false;
@@ -189,14 +197,17 @@ bool BattleShipMap::IsOutOfMap(Position InPosition) const
 
 Ship BattleShipMap::PlaceShipAt(Position InPosition, ShipType InShipType, Direction InDirection)
 {
-    int ShipSize = static_cast<int>(InShipType);
+    int ShipSize = ShipType2Int(InShipType);
     Position* Positions = new Position[ShipSize]{};
 
     for (int i = 0; i < ShipSize; i++)
     {
+        // 시작 좌표에서 주어진 방향으로 i만큼 나아간 좌표
         Position ShipPosition = InPosition + GetDirectionPosition(InDirection) * i;
 
         Positions[i] = ShipPosition;
+
+        // 맵에 함선을 표시
         Map[ShipPosition.GetY() * ColumnSize + ShipPosition.GetX()] = ShipSize;
     }
 

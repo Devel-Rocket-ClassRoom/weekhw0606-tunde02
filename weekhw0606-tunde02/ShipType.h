@@ -1,6 +1,13 @@
 #pragma once
 #include <string>
 
+/// <summary>
+/// 함선의 종류를 나타내는 열거체로, 열거자의 값은 해당 함선의 길이를 의미
+/// <para>구축함 : 2</para>
+/// <para>순양함 : 3</para>
+/// <para>전함 : 4</para>
+/// <para>항공모함 : 5</para>
+/// </summary>
 enum class ShipType
 {
     Babysitter      = 2,

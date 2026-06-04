@@ -35,11 +35,45 @@ Battle Ship 게임 만들기
 /// </summary>
 void Homework_Run();
 
+/// <summary>
+/// 맵의 행 개수
+/// </summary>
 const int RowSize               = 10;
+
+/// <summary>
+/// 맵의 열 개수
+/// </summary>
 const int ColumnSize            = 10;
+
+/// <summary>
+/// 플레이어가 공격할 수 있는 횟수
+/// </summary>
 const int InitialAttackChance   = 30;
 
+/// <summary>
+/// 공격할 좌표를 입력받는 함수
+/// <para>올바른 형태: "x y"</para>
+/// </summary>
+/// <returns>올바른 형태의 좌표 문자열</returns>
 std::string InputCoordinates();
+
+/// <summary>
+/// 매개변수로 전달된 문자열이 올바른 좌표 형태인지 검사하는 함수
+/// </summary>
+/// <param name="CoordinatesString">좌표 문자열</param>
+/// <returns>올바른 형태라면 true, 아니라면 false</returns>
 bool IsValidCoordinatesString(std::string CoordinatesString);
+
+/// <summary>
+/// 올바른 형태의 좌표 문자열을 이용하여 Position 객체를 만들어 반환하는 함수
+/// </summary>
+/// <param name="ValidInput">올바른 형태의 좌표 문자열</param>
+/// <returns>좌표 문자열을 분리하여 만든 Position 객체</returns>
 Position ToPosition(std::string ValidInput);
+
+/// <summary>
+/// 플레이어가 공격한 기록을 맵에 순서대로 표시하여 출력하는 함수
+/// </summary>
+/// <param name="AttackHistory">플레이어가 공격한 기록인 Position 배열</param>
+/// <param name="AttackCount">플레이어가 공격한 횟수</param>
 void PrintAttackHistory(const Position* AttackHistory, int AttackCount);
